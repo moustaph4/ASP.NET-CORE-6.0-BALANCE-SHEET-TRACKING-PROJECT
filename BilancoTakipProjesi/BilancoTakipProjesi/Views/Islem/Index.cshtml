@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BilancoTakipProjesi.Models.Islem>
+
+@{
+    ViewData["SayfaBasligi"] = "İşlemler";
+
+    ViewData["SayfaYazisi"] = "Yeni İşlem";
+
+    ViewData["SayfaUrl"] = "/Islem/EkleYadaGuncelle";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        
+        <ejs-grid id="islems" dataSource="@Model" gridLines="None"
+                  allowSorting="true" allowPaging="true">
+            <e-grid-pagesettings pagesize="5"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="KATEGORİ" field="IconluBaslik"></e-grid-column>
+                <e-grid-column headerText="TARİH" field="Tarih" width="110px"
+                type="date" format="dd-MMM-yyyy" textAlign="Left"></e-grid-column>
+                <e-grid-column headerText="TUTAR" field="GosterilenTutar" textAlign="Right" width="110px"></e-grid-column>
+                <e-grid-column headerText="İŞLEMLER" template="#islemlerTemasi" width="150px"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+
+    </div>
+</div>
+
+<script id="islemlerTemasi" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Islem/EkleYadaGuncelle/${IslemId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Islem/Delete/${IslemId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Silmek istediğinize emin misiniz?&quot;)">
+            <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
+    </div>
+</script>

@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Object> menuItems = new List<Object>();
+
+    menuItems.Add(new
+    {
+        text = "Genel",
+        separator = true
+    });
+
+    menuItems.Add(new
+    {
+        text = "Panel",
+        url = "/",
+        iconCss = "fa-solid fa-box"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Kategoriler",
+        url = "/Kategori",
+        iconCss = "fa-solid fa-folder-closed"
+    });
+
+    menuItems.Add(new
+    {
+        text = "İşlemler",
+        url = "/Islem",
+        iconCss = "fa-solid fa-arrow-right-arrow-left"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Ekstralar",
+        separator = true
+    });
+
+    menuItems.Add(new
+    {
+        text = "CV",
+        url = "https://drive.google.com/file/d/16SNKgZbFn2b3I_ZUgOF2JyfM8RURIpxK/view?usp=sharing",
+        iconCss = "fa-solid fa-link"
+    });
+
+    menuItems.Add(new
+    {
+        text = "GitHub",
+        url = "https://github.com/moustaph4",
+        iconCss = "fa-solid fa-code-fork"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Linkedin",
+        url = "https://www.linkedin.com/in/moustaph4/",
+        iconCss = "fa-solid fa-link"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Mail",
+        url = "mailto:mstfyldrm0808@gmail.com",
+        iconCss = "fa-solid fa-envelope"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Telefon",
+        url = "https://wa.me/905384693967",
+        iconCss = "fa-solid fa-phone"
+    });   
+}
+
+<ejs-sidebar id="sidebar" width="290px" enableDock dockSize="100px"
+                                    target=".dock-target" enableGestures="false">
+    <e-content-template>
+
+        <div class="logo-wrapper">
+            <div class="app-logo">
+                <img src="~/img/turkey.png"/>
+            </div>
+            <div class="w-100"></div>
+            <i id="sidebar-toggler" class="fa-solid"></i>
+        </div>
+
+        <div class="profile-wrapper">
+            <img class="profile-pic" src="~/img/pro.png"/>
+            <div class="titles d-flex flex-column ps-3">
+                <h6 class="mb-0">Bilanço Takip Uygulaması</h6>
+                <span class="text-muted">Mustafa Yıldırım</span>
+            </div>
+        </div>
+
+
+        <ejs-menu id="menu" items="menuItems" orientation="Vertical" hamburgerMode></ejs-menu>
+
+    </e-content-template>
+</ejs-sidebar>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        dockBar = document.getElementById('sidebar').ej2_instances[0];
+        document.getElementById('sidebar-toggler').onclick = function () {
+            dockBar.toggle();
+        };
+    });
+</script>
